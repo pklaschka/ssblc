@@ -9,7 +9,9 @@
     "start:bin": "./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["broken-link"],
+  "keywords": [
+    "broken-link"
+  ],
   "author": "Pablo Klaschka",
   "license": "MIT",
   "dependencies": {
