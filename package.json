@@ -1,19 +1,30 @@
 {
   "name": "@pklaschka/ssblc",
   "version": "0.1.0",
-  "description": "Static site broken link checker",
+  "description": "Static Site Broken Link Chacker: A broken-link checker for static sites, like the ones generated with docsify",
   "main": "index.js",
   "bin": "index.js",
   "scripts": {
     "start": "node .",
-    "start:bin": "./index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:bin": "./index.js"
   },
   "keywords": [
-    "broken-link"
+    "broken-link",
+    "docsify",
+    "checker",
+    "ci",
+    "static-site"
   ],
   "author": "Pablo Klaschka",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pklaschka/ssblc"
+  },
+  "bugs": {
+    "url": "https://github.com/pklaschka/ssblc/issues"
+  },
+  "homepage": "https://github.com/pklaschka/ssblc#readme",
   "dependencies": {
     "process": "latest",
     "puppeteer": "^2.0.0",
