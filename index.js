@@ -7,7 +7,7 @@ const url = require('url');
 const handler = require('serve-handler');
 const http = require('http');
 
-const package = require('./package');
+const packageInfo = require('./package');
 
 let dir = path.resolve(__dirname, process.argv[2] || process.cwd()); // Docsify directory
 
@@ -21,8 +21,8 @@ if (process.argv[2] === '-h' || process.argv[2] === '--help') {
     console.log('-v --version\tPrint version number');
     process.exit(0);
 } else if (process.argv[2] === '-v' || process.argv[2] === '--version') {
-    console.log(`${package.name} v${package.version}`);
-    console.log(`by ${package.author}`);
+    console.log(`${packageInfo.name} v${packageInfo.version}`);
+    console.log(`by ${packageInfo.author}`);
 
 } else {
 
@@ -38,8 +38,7 @@ if (process.argv[2] === '-h' || process.argv[2] === '--help') {
         const server = http.createServer((request, response) => {
             return handler(request, response, {
                 public: dir,
-                cleanUrls: true,
-                trailingSlash: false
+                cleanUrls: false,
             });
         });
 
