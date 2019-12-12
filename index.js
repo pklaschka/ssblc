@@ -38,7 +38,10 @@ if (process.argv[2] === '-h' || process.argv[2] === '--help') {
         const server = http.createServer((request, response) => {
             return handler(request, response, {
                 public: dir,
-                cleanUrls: false,
+                cleanUrls: [
+                    '/'
+                ],
+                directoryListing: false,
             });
         });
 
@@ -55,7 +58,7 @@ if (process.argv[2] === '-h' || process.argv[2] === '--help') {
             page.on("response", response => {
                 const request = response.request();
                 const url = request.url();
-                if (url === link && response.status() > 399) {
+                if (url === link && response.status() > 299) {
                     console.error("request failed url:", url);
                     unfoundLinks.push(url);
                 }
