@@ -1,6 +1,8 @@
 const path = require('path');
 const shell = require('shell-exec');
 
+jest.setTimeout(20000);
+
 const app = path.resolve(__dirname, '..');
 const testSite1Location = path.resolve(__dirname, 'test-site-1');
 const testSite2Location = path.resolve(__dirname, 'test-site-2');
@@ -27,8 +29,9 @@ describe('@pklaschka/ssblc', () => {
     describe('test-site-1: Site with no broken links', () => {
         let results;
 
-        beforeAll(async () => {
+        beforeAll(async (done) => {
             results = await shell(`node ${app} ${testSite1Location}`);
+            done();
         });
 
         it('should stop with an exit code of 0 (success)', () => {
