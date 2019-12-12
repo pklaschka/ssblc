@@ -6,7 +6,8 @@
   "bin": "index.js",
   "scripts": {
     "start": "node .",
-    "start:bin": "./index.js"
+    "start:bin": "./index.js",
+    "test": "jest tests"
   },
   "keywords": [
     "broken-link",
@@ -31,6 +32,9 @@
     "serve-handler": "^6.1.2"
   },
   "devDependencies": {
-    "@types/puppeteer": "^2.0.0"
+    "@types/jest": "^24.0.23",
+    "@types/puppeteer": "^2.0.0",
+    "jest": "^24.9.0",
+    "shell-exec": "^1.0.2"
   }
 }

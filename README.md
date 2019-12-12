@@ -1,5 +1,8 @@
 # @pklachka/ssblc
+
 Static Site Broken Link Checker
+
+![CI Status Badge](https://github.com/pklaschka/ssblc/workflows/CI/badge.svg?branch=master)
 
 A broken-link checker for static sites, like the ones generated with docsify that can get used, for example, for CI purposes on docsify docs (this is what I've developed it for).
 
