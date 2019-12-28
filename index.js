@@ -39,7 +39,9 @@ if (process.argv[2] === '-h' || process.argv[2] === '--help') {
             return handler(request, response, {
                 public: dir,
                 cleanUrls: [
-                    '/'
+                    '/',
+                    // '/**/',
+                    // '/docs/**'
                 ],
                 directoryListing: false,
             });
@@ -81,12 +83,14 @@ if (process.argv[2] === '-h' || process.argv[2] === '--help') {
 
                 if (link.startsWith('http://localhost:3000')) {
                     const newLinks = Array.from(
-                        content.matchAll(/href="(http[^"]*)"/g),
+                        content.matchAll(/href="([^"]*)"/g),
                         m => m[1]
                     ).map(nlink => url.resolve(link, nlink))
                         .filter(nlink => !checkedLinks.includes(nlink))
                         .filter(nlink => !foundLinks.includes(nlink)
-                        );
+                        )
+                        .filter(nlink => !nlink.startsWith('mailto:'))
+                        .filter(nlink => !nlink.startsWith('tel:'));
                     foundLinks.push(...newLinks);
                     found += newLinks.length;
                 }
