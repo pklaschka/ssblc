@@ -4,8 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const process = require('process');
 const url = require('url');
-const handler = require('serve-handler');
-const http = require('http');
+const express = require('express');
 
 const packageInfo = require('./package');
 
@@ -34,18 +33,8 @@ if (process.argv[2] === '-h' || process.argv[2] === '--help') {
     let unfoundLinks = [];
 
     if (fs.existsSync(dir) && fs.lstatSync(dir).isDirectory()) {
-
-        const server = http.createServer((request, response) => {
-            return handler(request, response, {
-                public: dir,
-                cleanUrls: [
-                    '/',
-                    // '/**/',
-                    // '/docs/**'
-                ],
-                directoryListing: false,
-            });
-        });
+        const app = express();
+        app.use(express.static(dir));
 
         /**
          * Checks the links
@@ -54,13 +43,14 @@ if (process.argv[2] === '-h' || process.argv[2] === '--help') {
         const action = async () => {
             const browser = await puppeteer.launch();
             const page = await browser.newPage();
+            await page.setCacheEnabled(false);
 
             let link;
 
             page.on("response", response => {
                 const request = response.request();
                 const url = request.url();
-                if (url === link && response.status() > 299) {
+                if (url === link && response.status() > 399) {
                     console.error("request failed url:", url);
                     unfoundLinks.push(url);
                 } else if (response.status() > 399 && url.endsWith('.md') && !url.endsWith('_sidebar.md')) {
@@ -99,7 +89,9 @@ if (process.argv[2] === '-h' || process.argv[2] === '--help') {
             await page.close();
             await browser.close();
         };
-        server.listen(3000, async () => {
+
+        const runServer = async () => {
+            const server = app.listen(3000);
             console.log('Running at http://localhost:3000\n');
             try {
                 await action();
@@ -119,6 +111,7 @@ if (process.argv[2] === '-h' || process.argv[2] === '--help') {
                     process.exit(1);
                 });
             }
-        });
+        };
+        runServer();
     }
 }

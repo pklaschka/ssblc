@@ -1,6 +1,6 @@
 {
   "name": "@pklaschka/ssblc",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Static Site Broken Link Chacker: A broken-link checker for static sites, like the ones generated with docsify",
   "main": "index.js",
   "bin": "index.js",
@@ -27,13 +27,14 @@
   },
   "homepage": "https://github.com/pklaschka/ssblc#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "process": "latest",
-    "puppeteer": "^2.0.0",
-    "serve-handler": "^6.1.2"
+    "puppeteer": "^2.0.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.23",
     "@types/puppeteer": "^2.0.0",
+    "@types/express": "^4.17.2",
     "jest": "^24.9.0",
     "shell-exec": "^1.0.2"
   }
