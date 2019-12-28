@@ -61,6 +61,10 @@ if (process.argv[2] === '-h' || process.argv[2] === '--help') {
                 if (url === link && response.status() > 299) {
                     console.error("request failed url:", url);
                     unfoundLinks.push(url);
+                } else if (response.status() > 399 && url.endsWith('.md') && !url.endsWith('_sidebar.md')) {
+                    // Docsify
+                    console.error("request failed url:", url);
+                    unfoundLinks.push(url);
                 }
             });
 
