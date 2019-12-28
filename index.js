@@ -81,7 +81,7 @@ if (process.argv[2] === '-h' || process.argv[2] === '--help') {
 
                 if (link.startsWith('http://localhost:3000')) {
                     const newLinks = Array.from(
-                        content.matchAll(/href="([^"]*)"/g),
+                        content.matchAll(/href="(http[^"]*)"/g),
                         m => m[1]
                     ).map(nlink => url.resolve(link, nlink))
                         .filter(nlink => !checkedLinks.includes(nlink))
