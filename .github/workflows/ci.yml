@@ -6,11 +6,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - run: sudo apt install -y libgbm-dev
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: 13
       - run: npm ci
-      - run: sudo apt install -y libgbm-dev
-      - run: node . ./tests/test-site-1
       - run: npm test
