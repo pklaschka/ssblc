@@ -11,5 +11,6 @@ jobs:
         with:
           node-version: 13
       - run: npm ci
+      - run: sudo apt install -y libgbm-dev
       - run: node . ./tests/test-site-1
       - run: npm test
