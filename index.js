@@ -66,7 +66,7 @@ if (process.argv[2] === '-h' || process.argv[2] === '--help') {
 
                 console.log(`${checked - 1}/${found}\t Checking link: `, link);
                 await page.goto(link);
-                await page.waitFor(100);
+                await page.waitForTimeout(100);
 
 
                 const content = await page.content();
