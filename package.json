@@ -29,7 +29,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "process": "latest",
-    "puppeteer": "^7.0.0"
+    "puppeteer": "^8.0.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.0",
