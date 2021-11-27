@@ -29,9 +29,8 @@ describe('@pklaschka/ssblc', () => {
     describe('test-site-1: Site with no broken links', () => {
         let results;
 
-        beforeAll(async (done) => {
+        beforeAll(async () => {
             results = await shell(`node ${app} ${testSite1Location}`);
-            done();
         });
 
         it('should stop with an exit code of 0 (success)', () => {
@@ -52,9 +51,8 @@ describe('@pklaschka/ssblc', () => {
     describe('test-site-2: Site with broken links', () => {
         let results;
 
-        beforeAll(async (done) => {
+        beforeAll(async () => {
             results = await shell(`node ${app} ${testSite2Location}`);
-            done();
         });
 
         it('should stop with an exit code of not 0 (failure)', () => {
@@ -73,14 +71,14 @@ describe('@pklaschka/ssblc', () => {
     });
 
     describe('Exceptions', () => {
-        it('should fail when the port is already in use', async (done) => {
+        it('should fail when the port is already in use', async () => {
             const http = require('http');
             const server = http.createServer();
             server.listen(3000);
             let results = await shell(`node ${app} ${testSite1Location}`);
             expect(results.code).not.toBe(0);
             expect(results.stderr).toContain('address already in use');
-            server.close(() => {done()});
+            server.close();
         });
     });
 });
